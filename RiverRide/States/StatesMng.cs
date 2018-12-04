@@ -15,10 +15,12 @@ namespace RiverRide
     class StatesMng
     {
         GamePlay gamePlay;
+        PauseState pauseState;
 
         public StatesMng()
         {
             gamePlay = new GamePlay();
+            pauseState = new PauseState();
         }
 
 
@@ -27,15 +29,15 @@ namespace RiverRide
             switch (Globals.activeState)
             {
                 case Globals.States.MENU:
-                    gamePlay.Update();
+                    Globals.activeState = Globals.States.GAME;
                     break;
                 case Globals.States.GAME:
+                    gamePlay.Update();
                     break;
                 case Globals.States.GAMEOVER:
                     break;
                 case Globals.States.PAUSE:
-                    break;
-                case Globals.States.EXIT:
+                    pauseState.Update();
                     break;
             }
         }

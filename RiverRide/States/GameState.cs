@@ -14,42 +14,38 @@ using Android.Widget;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input.Touch;
+using Microsoft.Xna.Framework.Input;
 
 namespace RiverRide
 {
 
-    class GamePlay
+    class GamePlay : StateInterface
     {
         public Plane plane;
         private List<PlaneBullet> lPlaneBullets;
         private Gui gui;
 
-        private bool isLoaded = false;
         private int fireCounter = 0;
         private int loadCounter = 0;
 
-        public void OnLoad()
+        public GamePlay()
         {
             plane = new Plane(new Vector2(Globals.planeTexture.Width, Globals.planeTexture.Height), 8);
             lPlaneBullets = new List<PlaneBullet>();
             gui = new Gui();
 
             Globals.mapList.Add(new MapReader(0,1));
-            Globals.mapList.Add(new MapReader(Globals.tileRect.Height-25,2));
+            Globals.mapList.Add(new MapReader(Globals.mapArea.Height-25,2));
         }
 
 
         public void Update()
         {
+            if(GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)            
+                Globals.activeState = Globals.States.PAUSE;
+            
             if (!Globals.doUpdate) return;
-
-
-            if (!isLoaded)
-            {
-                OnLoad();
-                isLoaded = true;
-            }
-
+         
 
             if (Globals.fire && fireCounter>=60)
             {
@@ -68,7 +64,7 @@ namespace RiverRide
         {
             Globals.graphics.GraphicsDevice.Clear(Color.Black);
             Globals.spriteBatch.Begin();
-            Globals.spriteBatch.Draw(Globals.tileTexture, Globals.tileRect, Globals.grassColor);
+            Globals.spriteBatch.Draw(Globals.tileTexture, Globals.mapArea, Colors.grass);
 
             foreach(MapReader map in Globals.mapList)
             {
@@ -76,10 +72,10 @@ namespace RiverRide
             }
 
 
-            Globals.spriteBatch.Draw(Globals.tileTexture, new Rectangle(0,Globals.tileRect.Height-25,Globals.tileRect.Width,25), Color.Black);
+            Globals.spriteBatch.Draw(Globals.tileTexture, new Rectangle(0,Globals.mapArea.Height-25,Globals.mapArea.Width,25), Color.Black);
 
             gui.Draw();
-            //PLACE DRAWING METHODS HERE
+            
             if (loadCounter++ > 30)
             {
                 foreach (PlaneBullet bullet in lPlaneBullets)

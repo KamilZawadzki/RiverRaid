@@ -35,7 +35,7 @@ namespace RiverRide
 
         public void Draw()
         {
-            Globals.spriteBatch.Draw(Globals.planeBulletTexture, Bounds, Globals.textColor);
+            Globals.spriteBatch.Draw(Globals.planeBulletTexture, Bounds, Colors.player);
 
             Location += new Vector2(0,-Velocity);
             Bounds = new Rectangle((int)Location.X - (int)Size.X / 2, (int)Location.Y, (int)Size.X, (int)Size.Y);

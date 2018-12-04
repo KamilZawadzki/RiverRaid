@@ -29,11 +29,8 @@ namespace RiverRide
 
         public MapReader(int startingPos, int mapNr)
         {
-            ColorList.Add(0, Globals.waterColor);  //WATER
-            ColorList.Add(1, Globals.grassColor);  //GRASS
-            ColorList.Add(2, Globals.lightGrayColor);  //LIGHT GRAY
-            ColorList.Add(12, Globals.darkGrayColor); //DARK GRAY
-            ColorList.Add(13, Globals.textColor); //YELLOW
+            ColorList.Add(0, Colors.water); 
+            ColorList.Add(1, Colors.grass);   
 
             this.startingPos = startingPos;
             this.mapNr = mapNr;
@@ -67,7 +64,7 @@ namespace RiverRide
                     Map.Add(Row);
                 } while (!reader.EndOfStream);
 
-                location.Height = Globals.tileRect.Height / Map.Count;
+                location.Height = Globals.mapArea.Height / Map.Count;
                 float width = Globals.screenSizeX / 30;
                 location.Width = (int)Math.Ceiling(width);
             }
@@ -78,7 +75,7 @@ namespace RiverRide
             int tileCounter = 0;
             int rowCounter = 0;
             location.Y = 1;
-            if (location.Y < Globals.tileRect.Height)
+            if (location.Y < Globals.mapArea.Height)
             {
                 Globals.collisionList.Clear();
                 foreach (List<int> row in Map)
@@ -86,7 +83,7 @@ namespace RiverRide
                     foreach (int tile in row)
                     {
                         location.X = (location.Width) * tileCounter++;
-                        location.Y = Globals.tileRect.Height / Map.Count * rowCounter - startingPos + mapMove;
+                        location.Y = Globals.mapArea.Height / Map.Count * rowCounter - startingPos + mapMove;
 
                         Globals.spriteBatch.Draw(Globals.tileTexture, location, ColorList[tile]);
                         if(tile != 0)
@@ -101,17 +98,17 @@ namespace RiverRide
             }
             mapMove += 7;
 
-            if (mapMove > Globals.tileRect.Height - 25 && startingPos == 0)
+            if (mapMove > Globals.mapArea.Height - 25 && startingPos == 0)
             {
                 mapNr = rand.Next(2, 6);
                 onLoad();
-                startingPos = Globals.tileRect.Height - 25;
+                startingPos = Globals.mapArea.Height - 25;
             }
-            else if (mapMove > 2 * (Globals.tileRect.Height - 25))
+            else if (mapMove > 2 * (Globals.mapArea.Height - 25))
             {
                 mapNr = rand.Next(2, 6);
                 onLoad();
-                startingPos = Globals.tileRect.Height - 25;
+                startingPos = Globals.mapArea.Height - 25;
             }
         }
     }

@@ -32,7 +32,7 @@ namespace RiverRide
             Size = size;
             Velocity = velocity;
 
-            Location = new Vector2(Globals.tileRect.Width / 2 - size.X / 2, Globals.tileRect.Height - 3 * size.Y);
+            Location = new Vector2(Globals.mapArea.Width / 2 - size.X / 2, Globals.mapArea.Height - 5 * size.Y);
             Bounds = new Rectangle((int)Location.X, (int)Location.Y, (int)size.X, (int)size.Y);
         }
 
@@ -56,19 +56,31 @@ namespace RiverRide
                 {
                     if (action.State == TouchLocationState.Moved || action.State == TouchLocationState.Pressed)
                     {
-                        if (Globals.joyStickRight.Contains(action.Position))
+                        if (Globals.inputRight.Contains(action.Position))
                         {
                             Location += new Vector2(5, 0);
                             isTurningRight = true;
                             isTurningLeft = false;
                         }
-                        else if (Globals.joyStickLeft.Contains(action.Position))
+                        else if (Globals.inputLeft.Contains(action.Position))
                         {
                             Location += new Vector2(-5, 0);
                             isTurningLeft = true;
                             isTurningRight = false;
                         }
-                        else if (Globals.fireButton.Contains(action.Position))
+                        else if (Globals.inputUp.Contains(action.Position))
+                        {
+                            if(Location.Y + 5 > Globals.mapArea.Height/3)
+                            Location += new Vector2(0, -5);
+                          
+                        }
+                        else if (Globals.inputDown.Contains(action.Position))
+                        {
+                            if(Location.Y - 5 < Globals.mapArea.Height - 5 * Size.Y)
+                            Location += new Vector2(0, 5);
+                       
+                        }
+                        else if (Globals.bulletsBtn.Contains(action.Position))
                         {
                             Globals.fire = true;
                         }
@@ -87,16 +99,16 @@ namespace RiverRide
         {
             if (isTurningLeft)
             {
-                Globals.spriteBatch.Draw(Globals.planeTextureLeft, Bounds, Globals.textColor);
+                Globals.spriteBatch.Draw(Globals.planeTextureLeft, Bounds, Colors.player);
 
             }
             else if (isTurningRight)
             {
-                Globals.spriteBatch.Draw(Globals.planeTextureRight, Bounds, Globals.textColor);
+                Globals.spriteBatch.Draw(Globals.planeTextureRight, Bounds, Colors.player);
             }
             else
             {
-                Globals.spriteBatch.Draw(Globals.planeTexture, Bounds, Globals.textColor);
+                Globals.spriteBatch.Draw(Globals.planeTexture, Bounds, Colors.player);
             }
         }
     }
