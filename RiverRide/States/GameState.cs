@@ -23,7 +23,8 @@ namespace RiverRide
     {
         public Plane plane;
         private List<PlaneBullet> lPlaneBullets;
-        private Gui gui;
+        private Fuel fuel;
+        int Score = 0;
 
         private int fireCounter = 0;
         private int loadCounter = 0;
@@ -32,7 +33,7 @@ namespace RiverRide
         {
             plane = new Plane(new Vector2(Globals.planeTexture.Width, Globals.planeTexture.Height), 8);
             lPlaneBullets = new List<PlaneBullet>();
-            gui = new Gui();
+            fuel = new Fuel();
 
             Globals.mapList.Add(new MapReader(0,1));
             Globals.mapList.Add(new MapReader(Globals.mapArea.Height-25,2));
@@ -56,7 +57,7 @@ namespace RiverRide
             Globals.fire = false;
             fireCounter++;
             plane.Behaviour();
-
+            
             Draw();
         }
 
@@ -74,8 +75,19 @@ namespace RiverRide
 
             Globals.spriteBatch.Draw(Globals.tileTexture, new Rectangle(0,Globals.mapArea.Height-25,Globals.mapArea.Width,25), Color.Black);
 
-            gui.Draw();
             
+
+
+
+            Globals.spriteBatch.Draw(Globals.tileTexture, Globals.userInterfaceArea, Colors.userInterfaceBackground);
+
+            fuel.Draw();
+
+            Globals.spriteBatch.Draw(Globals.inputButtonsTexture, new Rectangle(Globals.screenSizeX * 3 / 4 - Globals.inputButtonsTexture.Width * 2, Globals.bulletsBtn.Center.Y - Globals.inputButtonsTexture.Height * 2, Globals.inputButtonsTexture.Width * 4, Globals.inputButtonsTexture.Height * 4), Color.White);
+            Globals.spriteBatch.Draw(Globals.bulletButtonTexture, new Rectangle(Globals.screenSizeX / 4 - Globals.bulletButtonTexture.Width * 5/2, Globals.bulletsBtn.Center.Y - (Globals.bulletButtonTexture.Width * 5 / 2), Globals.bulletButtonTexture.Width * 5, Globals.bulletButtonTexture.Width * 5), Color.White);
+            String ScoreText = "Score: " + Score++;
+            Globals.spriteBatch.DrawString(Globals.defaultFont, ScoreText, new Vector2((Globals.screenSizeX / 2) - Globals.defaultFont.MeasureString(ScoreText).X / 2, 40), Colors.player);
+
             if (loadCounter++ > 30)
             {
                 foreach (PlaneBullet bullet in lPlaneBullets)

@@ -63,7 +63,7 @@
     <Compile Include="Game1.cs" />
     <Compile Include="States\GameState.cs" />
     <Compile Include="Globals.cs" />
-    <Compile Include="Gui.cs" />
+    <Compile Include="Fuel.cs" />
     <Compile Include="States\StatesMng.cs" />
     <Compile Include="MapReader.cs" />
     <Compile Include="Plane.cs" />
