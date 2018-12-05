@@ -13,32 +13,32 @@ using Microsoft.Xna.Framework;
 
 namespace RiverRide
 {
-    class PlaneBullet
+    class Bullet
     {
 
         private Plane Plane;
         private Vector2 Size { get; }
         private int Velocity { get; }
 
-        private Vector2 Location { get; set; }
+        private Vector2 Position { get; set; }
         private Rectangle Bounds { get; set; }
 
-        public PlaneBullet(Plane plane, Vector2 size, int velocity)
+        public Bullet(Plane plane, Vector2 size, int velocity)
         {
             Size = size;
             Velocity = velocity;
             Plane = plane;
 
-            Location = new Vector2(Plane.Location.X + Plane.Size.X / 2, Plane.Location.Y - Size.Y);
-            Bounds = new Rectangle((int)Location.X - (int)Size.X / 2, (int)Location.Y, (int)Size.X, (int)Size.Y);
+            Position = new Vector2(Plane.Location.X + Plane.Size.X / 2, Plane.Location.Y - Size.Y);
+            Bounds = new Rectangle((int)Position.X - (int)Size.X / 2, (int)Position.Y, (int)Size.X, (int)Size.Y);
         }
 
         public void Draw()
         {
             Globals.spriteBatch.Draw(Globals.planeBulletTexture, Bounds, Colors.player);
 
-            Location += new Vector2(0,-Velocity);
-            Bounds = new Rectangle((int)Location.X - (int)Size.X / 2, (int)Location.Y, (int)Size.X, (int)Size.Y);
+            Position += new Vector2(0,-Velocity);
+            Bounds = new Rectangle((int)Position.X - (int)Size.X / 2, (int)Position.Y, (int)Size.X, (int)Size.Y);
         }
     }
 }

@@ -35,14 +35,29 @@ namespace RiverRide
             Location = new Vector2(Globals.mapArea.Width / 2 - size.X / 2, Globals.mapArea.Height - 5 * size.Y);
             Bounds = new Rectangle((int)Location.X, (int)Location.Y, (int)size.X, (int)size.Y);
         }
-
-        public void Behaviour()
+        public void DrawPlane()
         {
-            foreach(Rectangle terrain in Globals.collisionList)
+            if (isTurningLeft)
             {
-                if (Bounds.Intersects(terrain))
-                {
-                    Globals.doUpdate = false;
+                Globals.spriteBatch.Draw(Globals.planeTextureLeft, Bounds, Colors.player);
+
+            }
+            else if (isTurningRight)
+            {
+                Globals.spriteBatch.Draw(Globals.planeTextureRight, Bounds, Colors.player);
+            }
+            else
+            {
+                Globals.spriteBatch.Draw(Globals.planeTexture, Bounds, Colors.player);
+            }
+        }
+        public void CheckCollision()
+        {
+            foreach(Rectangle element in Globals.collisionList)
+            {
+                if (Bounds.Intersects(element))
+                {                    
+                    Globals.activeState = Globals.States.GAMEOVER;
                     break;
                 }
             }
@@ -82,7 +97,7 @@ namespace RiverRide
                         }
                         else if (Globals.bulletsBtn.Contains(action.Position))
                         {
-                            Globals.fire = true;
+                            Globals.blockade = false;
                         }
                     }
                     Bounds = new Rectangle((int)Location.X, (int)Location.Y, (int)Size.X, (int)Size.Y);
@@ -95,21 +110,6 @@ namespace RiverRide
             }
         }
 
-        public void DrawPlane()
-        {
-            if (isTurningLeft)
-            {
-                Globals.spriteBatch.Draw(Globals.planeTextureLeft, Bounds, Colors.player);
-
-            }
-            else if (isTurningRight)
-            {
-                Globals.spriteBatch.Draw(Globals.planeTextureRight, Bounds, Colors.player);
-            }
-            else
-            {
-                Globals.spriteBatch.Draw(Globals.planeTexture, Bounds, Colors.player);
-            }
-        }
+    
     }
 }

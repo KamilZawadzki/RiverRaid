@@ -65,7 +65,7 @@ namespace RiverRide
                 } while (!reader.EndOfStream);
 
                 location.Height = Globals.mapArea.Height / Map.Count;
-                float width = Globals.screenSizeX / 30;
+                float width = Globals.screenSize.X / 30;
                 location.Width = (int)Math.Ceiling(width);
             }
         }

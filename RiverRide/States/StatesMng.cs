@@ -14,12 +14,12 @@ namespace RiverRide
 {
     class StatesMng
     {
-        GamePlay gamePlay;
+        GameState gamePlay;
         PauseState pauseState;
 
         public StatesMng()
         {
-            gamePlay = new GamePlay();
+            gamePlay = new GameState();
             pauseState = new PauseState();
         }
 
@@ -35,6 +35,7 @@ namespace RiverRide
                     gamePlay.Update();
                     break;
                 case Globals.States.GAMEOVER:
+                    gamePlay = new GameState();
                     break;
                 case Globals.States.PAUSE:
                     pauseState.Update();

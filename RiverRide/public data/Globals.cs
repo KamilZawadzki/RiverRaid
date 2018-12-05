@@ -18,23 +18,20 @@ namespace RiverRide
 {
     public static class Globals
     {
-        public static bool fire = false;
+        public static bool blockade = true;
 
         public static SpriteBatch spriteBatch = null;
         public static GraphicsDeviceManager graphics = null;
 
         public static SpriteFont defaultFont;
 
-        public static int screenSizeX;
-        public static int screenSizeY;
+        //public static int screenSizeX;
+       // public static int screenSizeY;
 
         public static Texture2D planeTexture = null;
         public static Texture2D planeTextureLeft = null;
         public static Texture2D planeTextureRight = null;
         public static Texture2D planeBulletTexture = null;
-        public static Texture2D bridgeTexture = null;
-        public static Texture2D fuelTexture = null;
-        public static Texture2D shipTexture = null;
         public static Texture2D tileTexture = null;
         public static Texture2D fuelIndicatorBox = null;
         public static Texture2D inputButtonsTexture = null;
@@ -51,9 +48,9 @@ namespace RiverRide
         public static List<MapReader> mapList = new List<MapReader>();
         public static List<Rectangle> collisionList = new List<Rectangle>();
 
-        public static bool doUpdate = true;
-
         public static States activeState = States.GAME;
+        internal static Vector2 screenSize;
+
         public enum States
         {
             MENU,

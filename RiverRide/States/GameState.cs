@@ -19,20 +19,20 @@ using Microsoft.Xna.Framework.Input;
 namespace RiverRide
 {
 
-    class GamePlay : StateInterface
+    class GameState : StateInterface
     {
         public Plane plane;
-        private List<PlaneBullet> lPlaneBullets;
+        private List<Bullet> planeBulletsList;
         private Fuel fuel;
         int Score = 0;
 
-        private int fireCounter = 0;
+        private int fireDelay = 0;
         private int loadCounter = 0;
 
-        public GamePlay()
+        public GameState()
         {
             plane = new Plane(new Vector2(Globals.planeTexture.Width, Globals.planeTexture.Height), 8);
-            lPlaneBullets = new List<PlaneBullet>();
+            planeBulletsList = new List<Bullet>();
             fuel = new Fuel();
 
             Globals.mapList.Add(new MapReader(0,1));
@@ -44,19 +44,18 @@ namespace RiverRide
         {
             if(GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)            
                 Globals.activeState = Globals.States.PAUSE;
-            
-            if (!Globals.doUpdate) return;
-         
 
-            if (Globals.fire && fireCounter>=60)
+            plane.CheckCollision(); 
+
+            if (!Globals.blockade && fireDelay++>=30)
             {
-                lPlaneBullets.Add(new PlaneBullet(plane, new Vector2(Globals.planeBulletTexture.Width, Globals.planeBulletTexture.Height) * 6, 10));
-                Globals.fire = false;
-                fireCounter = 0;
+                planeBulletsList.Add(new Bullet(plane, new Vector2(Globals.planeBulletTexture.Width, Globals.planeBulletTexture.Height) * 6, 15));
+                Globals.blockade = true;
+                fireDelay = 0;
             }
-            Globals.fire = false;
-            fireCounter++;
-            plane.Behaviour();
+            Globals.blockade = true;
+            
+            
             
             Draw();
         }
@@ -83,14 +82,14 @@ namespace RiverRide
 
             fuel.Draw();
 
-            Globals.spriteBatch.Draw(Globals.inputButtonsTexture, new Rectangle(Globals.screenSizeX * 3 / 4 - Globals.inputButtonsTexture.Width * 2, Globals.bulletsBtn.Center.Y - Globals.inputButtonsTexture.Height * 2, Globals.inputButtonsTexture.Width * 4, Globals.inputButtonsTexture.Height * 4), Color.White);
-            Globals.spriteBatch.Draw(Globals.bulletButtonTexture, new Rectangle(Globals.screenSizeX / 4 - Globals.bulletButtonTexture.Width * 5/2, Globals.bulletsBtn.Center.Y - (Globals.bulletButtonTexture.Width * 5 / 2), Globals.bulletButtonTexture.Width * 5, Globals.bulletButtonTexture.Width * 5), Color.White);
+            Globals.spriteBatch.Draw(Globals.inputButtonsTexture, new Rectangle((int)Globals.screenSize.X * 3 / 4 - Globals.inputButtonsTexture.Width * 2, Globals.bulletsBtn.Center.Y - Globals.inputButtonsTexture.Height * 2, Globals.inputButtonsTexture.Width * 4, Globals.inputButtonsTexture.Height * 4), Color.White);
+            Globals.spriteBatch.Draw(Globals.bulletButtonTexture, new Rectangle((int)Globals.screenSize.X / 4 - Globals.bulletButtonTexture.Width * 5/2, Globals.bulletsBtn.Center.Y - (Globals.bulletButtonTexture.Width * 5 / 2), Globals.bulletButtonTexture.Width * 5, Globals.bulletButtonTexture.Width * 5), Color.White);
             String ScoreText = "Score: " + Score++;
-            Globals.spriteBatch.DrawString(Globals.defaultFont, ScoreText, new Vector2((Globals.screenSizeX / 2) - Globals.defaultFont.MeasureString(ScoreText).X / 2, 40), Colors.player);
+            Globals.spriteBatch.DrawString(Globals.defaultFont, ScoreText, new Vector2((Globals.screenSize.X / 2) - Globals.defaultFont.MeasureString(ScoreText).X / 2, 40), Colors.player);
 
             if (loadCounter++ > 30)
             {
-                foreach (PlaneBullet bullet in lPlaneBullets)
+                foreach (Bullet bullet in planeBulletsList)
                 {
                     bullet.Draw();
                 }

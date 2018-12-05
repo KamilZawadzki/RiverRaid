@@ -30,8 +30,8 @@ namespace RiverRide
             String pauseScreenText = "PAUSED";
             String pauseScreenText2 = "press BACK to return";
             //Vector2 measureString = Globals.defaultFont.MeasureString(pauseScreenText);
-            Globals.spriteBatch.DrawString(Globals.defaultFont, pauseScreenText, new Vector2((Globals.screenSizeX/2)- Globals.defaultFont.MeasureString(pauseScreenText).X/2, Globals.screenSizeY / 2), Color.White);
-            Globals.spriteBatch.DrawString(Globals.defaultFont, pauseScreenText2, new Vector2((Globals.screenSizeX/2)- Globals.defaultFont.MeasureString(pauseScreenText2).X/2, (Globals.screenSizeY / 2) + (Globals.defaultFont.MeasureString(pauseScreenText).X)), Color.White);
+            Globals.spriteBatch.DrawString(Globals.defaultFont, pauseScreenText, new Vector2((Globals.screenSize.X/2)- Globals.defaultFont.MeasureString(pauseScreenText).X/2, Globals.screenSize.Y / 2), Color.White);
+            Globals.spriteBatch.DrawString(Globals.defaultFont, pauseScreenText2, new Vector2((Globals.screenSize.X/2)- Globals.defaultFont.MeasureString(pauseScreenText2).X/2, (Globals.screenSize.Y / 2) + (Globals.defaultFont.MeasureString(pauseScreenText).X)), Color.White);
             Globals.spriteBatch.End();
         }
     }

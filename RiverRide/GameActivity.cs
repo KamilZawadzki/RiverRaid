@@ -5,7 +5,7 @@ using Android.Views;
 
 namespace RiverRide
 {
-    [Activity(Label = "RiverRide"
+    [Activity(Label = "River Raid"
         , MainLauncher = true
         , Icon = "@drawable/icon"
         , Theme = "@style/Theme.Splash"
@@ -13,14 +13,14 @@ namespace RiverRide
         , LaunchMode = Android.Content.PM.LaunchMode.SingleInstance
         , ScreenOrientation = ScreenOrientation.FullUser
         , ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden | ConfigChanges.ScreenSize | ConfigChanges.ScreenLayout)]
-    public class Activity1 : Microsoft.Xna.Framework.AndroidGameActivity
+    public class GameActivity : Microsoft.Xna.Framework.AndroidGameActivity
     {
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
             var g = new Game1();
             SetContentView((View)g.Services.GetService(typeof(View)));
-            g.Run();
+            g.Run();           
         }
     }
 }
