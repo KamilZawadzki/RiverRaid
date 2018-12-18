@@ -13,7 +13,7 @@ using Microsoft.Xna.Framework;
 
 namespace RiverRide.States
 {
-    //#deprecated stan z poprzednich gier, tutaj raczej nie znajdzie zastosowania - trzeba chyba zrobić na activities? :o
+    //#deprecated zaciągnąłem z poprzednich gier, tutaj raczej nie znajdzie zastosowania - trzeba chyba zrobić na activities ale pluje błędami meh? :o
     class GameOverState : StateInterface
     {
         private List<Button> _buttons;

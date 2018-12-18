@@ -13,7 +13,7 @@ namespace RiverRide
     {
         protected override void OnCreate(Bundle savedInstanceState)
         {
-            //WRRRRR próbowałem w tym szajsie zrobić menu -.-
+            //WRRRRR próbowałem tu na różne sposoby zrobić menu ;_;
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.layout1);
             
