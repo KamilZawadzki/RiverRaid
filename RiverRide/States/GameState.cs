@@ -82,8 +82,8 @@ namespace RiverRide
 
             fuel.Draw();
 
-            Globals.spriteBatch.Draw(Globals.inputButtonsTexture, new Rectangle((int)Globals.screenSize.X * 3 / 4 - Globals.inputButtonsTexture.Width * 2, Globals.bulletsBtn.Center.Y - Globals.inputButtonsTexture.Height * 2, Globals.inputButtonsTexture.Width * 4, Globals.inputButtonsTexture.Height * 4), Color.White);
-            Globals.spriteBatch.Draw(Globals.bulletButtonTexture, new Rectangle((int)Globals.screenSize.X / 4 - Globals.bulletButtonTexture.Width * 5/2, Globals.bulletsBtn.Center.Y - (Globals.bulletButtonTexture.Width * 5 / 2), Globals.bulletButtonTexture.Width * 5, Globals.bulletButtonTexture.Width * 5), Color.White);
+            Globals.spriteBatch.Draw(Globals.inputButtonsTexture, new Rectangle((int)Globals.screenSize.X  - Globals.inputButtonsTexture.Width * 2, Globals.bulletsBtn.Center.Y - Globals.inputButtonsTexture.Height , Globals.inputButtonsTexture.Width * 2-40, Globals.inputButtonsTexture.Height * 2-40), Color.White);
+            Globals.spriteBatch.Draw(Globals.bulletButtonTexture, new Rectangle((int)Globals.screenSize.X / 4 - Globals.bulletButtonTexture.Width * 5/2, Globals.bulletsBtn.Center.Y - (Globals.bulletButtonTexture.Width * 2), Globals.bulletButtonTexture.Width *2, Globals.bulletButtonTexture.Width *2), Color.White);
             String ScoreText = "Score: " + Score++;
             Globals.spriteBatch.DrawString(Globals.defaultFont, ScoreText, new Vector2((Globals.screenSize.X / 2) - Globals.defaultFont.MeasureString(ScoreText).X / 2, 40), Colors.player);
 

@@ -21,7 +21,7 @@ namespace RiverRide
         public Rectangle fuelLineBounds;
         public Fuel()
         {
-            fuelIndicatorBounds = new Rectangle((int)Globals.screenSize.X/4 - Globals.fuelIndicatorBox.Width / 2, Globals.userInterfaceArea.Bottom- Globals.fuelIndicatorBox.Height * 3 / 2, Globals.fuelIndicatorBox.Width, Globals.fuelIndicatorBox.Height); ;
+            fuelIndicatorBounds = new Rectangle((int)Globals.screenSize.X / 12, Globals.userInterfaceArea.Bottom - Globals.fuelIndicatorBox.Height * 3 / 4, Globals.fuelIndicatorBox.Width/2, Globals.fuelIndicatorBox.Height/2); 
             fuelLineBounds = new Rectangle(fuelIndicatorBounds.X + fuelIndicatorBounds.Width - 20, fuelIndicatorBounds.Y, 20, fuelIndicatorBounds.Height / 2);
         }
 

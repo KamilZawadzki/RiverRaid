@@ -51,8 +51,8 @@ namespace RiverRide
 
             Globals.inputUp = new Rectangle((int)(Globals.screenSize.X * 3 / 4 - Globals.inputButtonsTexture.Width * 2)+ Globals.inputButtonsTexture.Width*4/3, (Globals.bulletsBtn.Center.Y - Globals.inputButtonsTexture.Height * 2), Globals.inputButtonsTexture.Width * 4 / 3, Globals.inputButtonsTexture.Height * 4 / 3);
             Globals.inputDown = new Rectangle((int)(Globals.screenSize.X * 3 / 4 - Globals.inputButtonsTexture.Width * 2)+ Globals.inputButtonsTexture.Width*4/3, (Globals.bulletsBtn.Center.Y - Globals.inputButtonsTexture.Height * 2) + Globals.inputButtonsTexture.Height * 4 * 2 / 3, Globals.inputButtonsTexture.Width * 4 / 3, Globals.inputButtonsTexture.Height * 4 / 3);
-            Globals.inputRight = new Rectangle((int)(Globals.screenSize.X * 3 / 4 - Globals.inputButtonsTexture.Width * 2)+ Globals.inputButtonsTexture.Width*4*2/3, (Globals.bulletsBtn.Center.Y - Globals.inputButtonsTexture.Height * 2) + Globals.inputButtonsTexture.Height * 4 / 3, Globals.inputButtonsTexture.Width * 4 / 3, Globals.inputButtonsTexture.Height * 4 / 3);
-            Globals.inputLeft = new Rectangle((int)Globals.screenSize.X * 3 / 4 - Globals.inputButtonsTexture.Width * 2, (Globals.bulletsBtn.Center.Y - Globals.inputButtonsTexture.Height * 2)+ Globals.inputButtonsTexture.Height*4/3, Globals.inputButtonsTexture.Width * 4 / 3, Globals.inputButtonsTexture.Height*4/3);
+            Globals.inputRight = new Rectangle((int)(Globals.screenSize.X * 3 / 5 - Globals.inputButtonsTexture.Width * 2)+ Globals.inputButtonsTexture.Width*4*2/3, (Globals.bulletsBtn.Center.Y - Globals.inputButtonsTexture.Height * 2) + Globals.inputButtonsTexture.Height * 4 / 3, Globals.inputButtonsTexture.Width * 4 / 3, Globals.inputButtonsTexture.Height * 4 / 3);
+            Globals.inputLeft = new Rectangle((int)Globals.screenSize.X * 3 / 3 - Globals.inputButtonsTexture.Width * 2, (Globals.bulletsBtn.Center.Y - Globals.inputButtonsTexture.Height * 2)+ Globals.inputButtonsTexture.Height*4/3, Globals.inputButtonsTexture.Width * 4 / 3, Globals.inputButtonsTexture.Height*4/3);
 
             
 
